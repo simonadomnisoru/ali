@@ -1,0 +1,24 @@
+{
+  "name": "ali-react",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.17.1",
+    "node-sass": "^4.7.2",
+    "nodemon": "^1.14.11",
+    "react": "^16.2.0",
+    "react-bootstrap": "^0.32.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.0.17",
+    "scss-compile": "^0.1.7"
+  },
+  "scripts": {
+    "build-css": "node-sass --include-path scss src/test.scss src/index.css",
+    "watch": "npm run scss-compile",
+    "start": "npm run build-css && react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "proxy": "http://localhost:3001"
+}
