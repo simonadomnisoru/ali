@@ -26,17 +26,13 @@ class App extends Component {
                     onChangePage={this.handleChangePage}
                     onSetSessionId={this.handleSessionId}
                 />
-                break;
             case actionTypes.VIDEOS:
                 return <Videos sessionId={this.state.sessionId} />
-                break;
             default:
                 return null;
         }
     }
     render() {
-        var pageToDisplay = this.state.pageToDisplay;
-
         return (
             <div className='app-body'>
                 {this.renderPage()}
