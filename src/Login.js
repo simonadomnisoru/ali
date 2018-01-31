@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button } from "react-bootstrap";
+import { Button, FormGroup, FormControl, ControlLabel, Panel} from "react-bootstrap";
 import axios from "axios";
 import actionTypes from './store/actionTypes';
 class Login extends Component {
@@ -33,33 +33,42 @@ class Login extends Component {
         return (
             <Button bsStyle='primary' onClick={this.handleLogin}>
                 Login
-      </Button>
+            </Button>
         );
     };
     render() {
         return (
             <div className='login-box'>
-                User:{' '}
-                <input
-                    type='text'
-                    onChange={e =>
-                        this.setState({
-                            username: e.target.value
-                        })
-                    }
-                />{''}
-                <br />
-                Password:{''}
-                <input
-                    type='password'
-                    onChange={e =>
-                        this.setState({
-                            password: e.target.value
-                        })
-                    }
-                />{' '}
-                <br />
-                {this.buttonLogin()}
+                <Panel bsStyle="info">
+                    <Panel.Heading>
+                        <Panel.Title componentClass="h3">Login to see the videos</Panel.Title>
+                    </Panel.Heading>
+                    <Panel.Body>
+                        <FormGroup >
+                            <ControlLabel>User</ControlLabel>
+                            <FormControl
+                                type='text'
+                                onChange={e =>
+                                    this.setState({
+                                        username: e.target.value
+                                    })
+                                }
+                            />
+                            <ControlLabel>Password</ControlLabel>
+                            <FormControl
+                                type='password'
+                                onChange={e =>
+                                    this.setState({
+                                        password: e.target.value
+                                    })
+                                }
+                            />
+                            <br />
+                            {this.buttonLogin()}
+                        </FormGroup>
+                    </Panel.Body>
+                </Panel>
+
             </div>
         );
     }

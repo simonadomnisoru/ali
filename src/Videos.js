@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Video from './Video';
+import { Pager, Glyphicon, FormControl} from "react-bootstrap";
+import paginationBasic from './VideosPagination';
+
 class Videos extends Component {
     constructor(props) {
         super(props);
@@ -33,22 +36,28 @@ class Videos extends Component {
     renderVideos = () => {
         if (this.state && this.state.videos) {
             const listItems = this.state.videos.map((video, index) =>
-                <li key={index}>
+                <div key={index}>
                     <Video video={video} key={index} />
-                </li>
+                </div>
             );
             return (
-                <ul>{listItems}</ul>
+                <div className='videos-container'>{listItems}</div>
             );
         }
     };
     render() {
         return (
             <div>
-                <p>Videos page</p>
-                <div>
-                    {this.renderVideos()}
-                </div>
+                <h4 className='videos-title'>Video Searcher</h4>
+
+                <FormControl bsSize="small"/>
+                <Glyphicon glyph="star" />
+                {this.renderVideos()}
+                {paginationBasic}
+                <Pager>
+                    <Pager.Item href="#" previous >Previous</Pager.Item>
+                    <Pager.Item href="#" next >Next</Pager.Item>
+                </Pager>;
             </div>
         );
     }
