@@ -1,7 +1,8 @@
 // Define action types
 const actionTypes = {
     LOGIN: 'pageLogin',
-    VIDEOS: 'pageVideos'
+    VIDEOS: 'pageVideos',
+    VIDEODETAILS: 'pageVideoDetails'
 }
 
 export default actionTypes;

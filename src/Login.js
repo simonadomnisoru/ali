@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Button, FormGroup, FormControl, ControlLabel, Panel} from "react-bootstrap";
 import axios from "axios";
 import actionTypes from './store/actionTypes';
+import changePage from './store/actionCreators';
+import store from './store/store';
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -21,7 +23,7 @@ class Login extends Component {
             .then(response => {
                 if (response.data.status === 'success') {
                     this.props.onSetSessionId(response.data.sessionId);
-                    this.props.onChangePage(actionTypes.VIDEOS);
+                    store.dispatch({ type: actionTypes.VIDEOS });
                 }
             })
             .catch(error => {

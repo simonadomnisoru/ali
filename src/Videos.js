@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Video from './Video';
-import { Pager, Glyphicon, FormControl} from "react-bootstrap";
+import { Pager } from "react-bootstrap";
 import paginationBasic from './VideosPagination';
 
 class Videos extends Component {
@@ -45,19 +45,32 @@ class Videos extends Component {
             );
         }
     };
+
+    renderPagination = () => {
+        if (this.state && this.state.videos) {
+            return (
+                <div>
+                    {paginationBasic}
+                    <Pager>
+                        <Pager.Item href="#" previous >Previous</Pager.Item>
+                        <Pager.Item href="#" next >Next</Pager.Item>
+                    </Pager>
+                </div>
+            );
+        }
+    };
     render() {
         return (
             <div>
                 <h4 className='videos-title'>Video Searcher</h4>
-
-                <FormControl bsSize="small"/>
-                <Glyphicon glyph="star" />
+                <div className="input-group videos-search">
+                    <input type="text" className="form-control" placeholder="Search for..." />
+                    <span className="input-group-btn">
+                        <button className="btn btn-default" type="button">Go!</button>
+                    </span>
+                </div>
                 {this.renderVideos()}
-                {paginationBasic}
-                <Pager>
-                    <Pager.Item href="#" previous >Previous</Pager.Item>
-                    <Pager.Item href="#" next >Next</Pager.Item>
-                </Pager>;
+                {this.renderPagination()}
             </div>
         );
     }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from "react-bootstrap";
+import actionTypes from './store/actionTypes';
+import store from './store/store';
 
 class Video extends Component {
     constructor(props) {
@@ -7,6 +9,7 @@ class Video extends Component {
     }
 
     goToVideosDetails = () => {
+        store.dispatch({ type: actionTypes.VIDEODETAILS });
         console.log('goToVideosDetails');
     };
     render() {

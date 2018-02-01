@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Login from './Login';
 import Videos from './Videos';
+import VideoDetails from './VideoDetails';
 import actionTypes from './store/actionTypes';
 import store from './store/store';
 class App extends Component {
@@ -10,11 +11,10 @@ class App extends Component {
             pageToDisplay: store.getState().pageToDisplay,
             sessionId: ''
         };
+        store.subscribe( () => {
+            this.setState({ pageToDisplay: store.getState().pageToDisplay });
+        });
     }
-    handleChangePage = newPage => {
-        store.dispatch({ type: newPage });
-        this.setState({ pageToDisplay: store.getState().pageToDisplay });
-    };
     handleSessionId = sessionId => {
         this.setState({ sessionId: sessionId });
     };
@@ -22,12 +22,11 @@ class App extends Component {
     renderPage = () => {
         switch (this.state.pageToDisplay) {
             case actionTypes.LOGIN:
-                return <Login
-                    onChangePage={this.handleChangePage}
-                    onSetSessionId={this.handleSessionId}
-                />
+                return <Login onSetSessionId={this.handleSessionId} />
             case actionTypes.VIDEOS:
                 return <Videos sessionId={this.state.sessionId} />
+            case actionTypes.VIDEODETAILS:
+                return <VideoDetails sessionId={this.state.sessionId}/>
             default:
                 return null;
         }
